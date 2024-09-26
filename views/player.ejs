@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now Playing - <%= song.title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1a202c, #4a5568);
+            color: white;
+            min-height: 100vh;
+            margin: 0; /* Remove default margin */
+            font-family: Arial, sans-serif; /* Set a readable font */
+        }
+        header {
+            background-color: #1a202c;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            font-size: 32px;
+            color: #48bb78;
+            font-weight: 800;
+        }
+        nav a {
+            margin-right: 16px;
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #48bb78;
+        }
+        main {
+            max-width: 800px;
+            margin: 48px auto;
+            padding: 24px;
+            background-color: #2d3748;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+        h2 {
+            font-size: 36px;
+            text-align: center;
+            color: #48bb78;
+            margin-bottom: 32px;
+        }
+        .song-container {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center items horizontally */
+            background-color: #2d3748; /* Background for song container */
+            padding: 20px; /* Padding for song container */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+        .song-info {
+            display: flex; /* Align song info elements */
+            align-items: center; /* Center items vertically */
+            margin-bottom: 20px; /* Space below song info */
+        }
+        .song-info img {
+            height: 100px; /* Control height of album art */
+            border-radius: 5px; /* Rounded corners for album art */
+            margin-right: 15px; /* Space between album art and text */
+        }
+        .controls {
+            display: flex; /* Align controls horizontally */
+            margin-bottom: 10px; /* Space below controls */
+            align-items: center; /* Center items vertically */
+        }
+        .controls a {
+            margin: 0 15px; /* Spacing around control icons */
+            color: #333; /* Control icon color */
+        }
+        .song-details {
+            text-align: center; /* Center text below audio */
+        }
+        .song-details h3, .song-details p {
+            margin: 5px 0; /* Margin for better spacing */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Kayetify</h1> <!-- Title of the page -->
+            <nav>
+                <a href="/songs">Songs</a>
+                <a href="/upload">Upload Song</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2>Now Playing</h2> <!-- Centered "Now Playing" title -->
+        <div class="song-container">
+            <div class="song-info">
+                <img src="<%= albumArtUrl %>" alt="<%= song.album %> Cover Art">
+                <div>
+                    <h3 class="song-title"><%= song.title %></h3>
+                    <p class="artist-album">Artist: <%= song.artist %></p>
+                    <p class="artist-album">Album: <%= song.album %></p>
+                </div>
+            </div>
+    
+            <div class="controls">
+                <a href="/play/<%= previousSongId %>">
+                    <i class="fas fa-step-backward fa-2x"></i>
+                </a>
+                <audio controls>
+                    <source src="<%= song.song_url %>" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <a href="/play/<%= nextSongId %>">
+                    <i class="fas fa-step-forward fa-2x"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

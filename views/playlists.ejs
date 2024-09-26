@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlists</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1a202c, #4a5568);
+            color: white;
+            min-height: 100vh;
+        }
+        /* Add any additional styles similar to the songs page */
+        header {
+            background-color: #1a202c;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            font-size: 32px;
+            color: #48bb78;
+            font-weight: 800;
+        }
+        .playlists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 32px;
+        }
+        .playlist-card {
+            background-color: #2d3748;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .playlist-card h3 {
+            font-size: 24px;
+            color: #48bb78;
+            margin-bottom: 12px;
+        }
+        .playlist-card p {
+            color: #cbd5e0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Kayetify</h1>
+            <nav>
+                <a href="/songs">Songs</a>
+                <a href="/playlists">Playlists</a>
+                <a href="/upload">Upload Song</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2>Playlists</h2>
+        <div class="playlists-grid">
+            <% playlists.forEach(playlist => { %>
+                <div class="playlist-card">
+                    <h3><%= playlist.name %></h3>
+                    <p>Number of Songs: <%= playlist.songCount %></p>
+                    <a href="/playlist/<%= playlist.id %>" class="play-button">View Playlist</a>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+</body>
+</html>
